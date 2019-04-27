@@ -45,6 +45,8 @@ export default {
 
 
 <script>
+import "milligram";
+
 export default{
 	data() {
 		  return {
