@@ -28,8 +28,8 @@ export default {
     	<button @click = "logMeOut()">Wyloguj </button>
       </div>
     <div v-else>
-    	<input type ="text" v-model="email">
-    	<button @click = "logMeIn()">Zaloguj sie</button>
+    	<login-form @login="logMeIn($event)"></login-form>
+    	
     </div>
     
     
@@ -46,8 +46,10 @@ export default {
 
 <script>
 import "milligram";
+import LoginForm from "./LoginForm";
 
 export default{
+	components: {LoginForm},
 	data() {
 		  return {
 		    email: '',
@@ -56,8 +58,9 @@ export default{
 		},
 
 	methods: {
-		  logMeIn() {
+		  logMeIn(username) {
 		    this.isAuthenticated = true;
+		    this.email = username
 		  },
 		  logMeOut() {
 			    this.isAuthenticated = false;
