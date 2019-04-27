@@ -1,9 +1,9 @@
 <template>
    <div>
-       <label>Zaloguj się e-mailem</label>
+       <label>{{header}}</label>
        <form>
        	<input type="email" v-model="email">
-       <button @click="enter()">Wchodzę</button>
+       <button @click="enter()">{{buttonLabel}}</button>
        </form>
        
    </div>
@@ -11,6 +11,7 @@
 
 <script>
 export default {
+	props: ['buttonLabel', 'header'],
  data() {
      return {
          email: ''

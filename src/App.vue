@@ -23,12 +23,12 @@ export default {
 <template>
   <div>
     <h1> Witaj w systemie </h1>
-    <div v-if="isAuthenticated">
-    	<p> Zalogowany jako {{email}} </p>
-    	<button @click = "logMeOut()">Wyloguj </button>
+    <div v-if="email.length > 0">
+    	<log-in :username = "email" @logout="logMeOut()"></log-in>
+    	
       </div>
     <div v-else>
-    	<login-form @login="logMeIn($event)"></login-form>
+    	<login-form @login="logMeIn($event)" button-label = "wbijam" header = "Zaloguj sie"></login-form>
     	
     </div>
     
@@ -37,6 +37,9 @@ export default {
    <div v-if="email.length < 10">Ale masz krótki adres!</div>
 	<div v-else-if="email.length < 15">Twój adres e-mail jest w sam raz.</div>
 	<div v-else>Twój adres e-mail jest stanowczo za długi.</div>
+	
+	<p> Zalogowany jako {{email}} </p>
+    	<button @click = "logMeOut()">Wyloguj </button>
   -->  
    	
     
@@ -47,23 +50,25 @@ export default {
 <script>
 import "milligram";
 import LoginForm from "./LoginForm";
+import LogIn from "./LogIn";
 
 export default{
-	components: {LoginForm},
+	components: {LoginForm, LogIn},
+	
 	data() {
 		  return {
 		    email: '',
-		    isAuthenticated: false
+		    //isAuthenticated: false
 		  };
 		},
 
 	methods: {
 		  logMeIn(username) {
-		    this.isAuthenticated = true;
+		    //this.isAuthenticated = true;
 		    this.email = username
 		  },
 		  logMeOut() {
-			    this.isAuthenticated = false;
+			    //this.isAuthenticated = false;
 			    this.email = '';
 			  }
 		},
